@@ -12,8 +12,7 @@ import {DataService} from "../Datatransfer";
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css']
 })
-export class WeatherComponent implements OnInit{
-
+export class WeatherComponent implements OnInit {
   ipAddress: string = 'Ładuję';
   lon: number = 1;
   lat: number = 1;
@@ -48,6 +47,9 @@ export class WeatherComponent implements OnInit{
 
   ngOnInit() {
     this.getIPAddress();
+    this.getCurrentDay();
+    this.getCurrentDate();
+
   }
 
   private getIPAddress() {
@@ -75,8 +77,8 @@ export class WeatherComponent implements OnInit{
   }
 
   private getWeather() {
-    this.http.get('https://api.openweathermap.org/data/2.5/onecall?lat=' + this.lat + '&lon=' + this.lon +
-      '&appid=5eca8f996cd6a42c004008c32442acb7')
+    this.http.get('https://api.openweathermap.org/data/2.5/onecall?lat=' + this.lat + '&lon=' + this.lon
+      + '&units=metric' + '&appid=5eca8f996cd6a42c004008c32442acb7')
       .subscribe((res: any) => {
         this.weather = res.current.weather[0].main;
         this.weatherDescription = res.current.weather[0].description;
@@ -98,7 +100,7 @@ export class WeatherComponent implements OnInit{
   }
 
   private getWeatherImage(imageId: string) {
-    this.imageService.downloadPDF('https://openweathermap.org/img/w/' + imageId + '.png').subscribe(res =>  this.createImageFromBlob(res))
+    this.imageService.downloadPDF('https://openweathermap.org/img/w/' + imageId + '.png').subscribe(res => this.createImageFromBlob(res))
   }
 
   createImageFromBlob(image: Blob) {
@@ -106,5 +108,24 @@ export class WeatherComponent implements OnInit{
     this.weatherImage = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
     this.imageLoaded = true;
   }
+
+  getCurrentDay() {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const currentDate = new Date();
+    this.currentDay = days[currentDate.getDay()];
+  }
+
+  getCurrentDate() {
+    const currentDate = new Date();
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const year = currentDate.getFullYear();
+    this.currentDate = `${day}.${month}.${year}`;
+  }
+
+  private capitalizeFirstLetter(string : string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
 
 }
