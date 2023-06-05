@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DropdownComponent } from './dropdown.component';
+import { WeatherArrayComponent } from './weather-array.component';
 
-describe('DropdownComponent', () => {
-  let component: DropdownComponent;
-  let fixture: ComponentFixture<DropdownComponent>;
+describe('WeatherArrayComponent', () => {
+  let component: WeatherArrayComponent;
+  let fixture: ComponentFixture<WeatherArrayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DropdownComponent ]
+      declarations: [ WeatherArrayComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DropdownComponent);
+    fixture = TestBed.createComponent(WeatherArrayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

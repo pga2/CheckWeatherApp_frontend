@@ -2,12 +2,11 @@
 <html>
 
 
-
 <nav class="navbar navbar-light">
-  <div class="container"> <a class="navbar-brand text-primary" href="#">
-      <i class="fa d-inline fa-lg fa-circle"></i>
-      <b> POGODA</b>
-    </a> </div>
+  <div class="container"><a class="navbar-brand text-primary" href="#">
+    <i class="fa d-inline fa-lg fa-circle"></i>
+    <b> POGODA</b>
+  </a></div>
 </nav>
 <div class="py-5 align-items-center d-flex">
   <div class="container">
@@ -24,64 +23,76 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <h1 class="display-4">21°C</h1>
+            <h1 class="display-4">{{temp}}°C</h1>
           </div>
         </div>
       </div>
-      <div class="col-md-2 m-2 mr-4" style=""><img class="img-fluid d-block rounded-circle float-left" src="https://static-00.iconduck.com/assets.00/sun-symbol-emoji-512x512-qjm8vnpc.png" width="100" height="100" style=""></div>
+      <div class="col-md-2 m-2 mr-4" style=""><img class="img-fluid d-block rounded-circle float-left"
+                                                   src="https://static-00.iconduck.com/assets.00/sun-symbol-emoji-512x512-qjm8vnpc.png"
+                                                   width="100" height="100" style=""></div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-md-2" style="">
+    <app-weather-array></app-weather-array>
+    <div class="py-5">
+      <div class="container">
         <div class="row">
+          <!--
+                    <iframe src="https://maps.google.com/maps?q=35.856737, 10.606619&z=15&output=embed" width="360" height="270" frameborder="0" style="border:0"></iframe>
+          -->
           <div class="col-md-12">
-            <p>Wtorek<br>30°C</p>
+            <iframe width="100%" height="400"
+                    [src]="('https://maps.google.com/maps?q=' + lat + ',' + lon +'&z=10&output=embed') | safe"
+                    scrolling="no" frameborder="0"></iframe>
           </div>
-        </div><img class="img-fluid d-block rounded-circle float-left" src="https://static-00.iconduck.com/assets.00/sun-symbol-emoji-512x512-qjm8vnpc.png" width="100" height="100">
+
+        </div>
       </div>
-      <div class="col-md-2" style="">
+    </div>
+    <div class="py-5">
+      <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <p>Wtorek<br>30°C</p>
+          <div class="col-md-3">
+            <h5 class="">IP</h5>
+            <h6 class="">{{ipAddress}}</h6>
           </div>
-        </div><img class="img-fluid d-block rounded-circle float-left" src="https://static-00.iconduck.com/assets.00/sun-symbol-emoji-512x512-qjm8vnpc.png" width="100" height="100">
-      </div>
-      <div class="col-md-2" style="">
-        <div class="row">
-          <div class="col-md-12">
-            <p>Wtorek<br>30°C</p>
+          <div class="col-md-3">
+            <h5 class="">Latitude</h5>
+            <h6 class="">{{lat}}</h6>
           </div>
-        </div><img class="img-fluid d-block rounded-circle float-left" src="https://static-00.iconduck.com/assets.00/sun-symbol-emoji-512x512-qjm8vnpc.png" width="100" height="100">
-      </div>
-      <div class="col-md-2" style="">
-        <div class="row">
-          <div class="col-md-12">
-            <p>Wtorek<br>30°C</p>
+          <div class="col-md-3">
+            <h5 class="">Longitude</h5>
+            <h6 class="">{{lon}}</h6>
           </div>
-        </div><img class="img-fluid d-block rounded-circle float-left" src="https://static-00.iconduck.com/assets.00/sun-symbol-emoji-512x512-qjm8vnpc.png" width="100" height="100">
-      </div>
-      <div class="col-md-2" style="">
-        <div class="row">
-          <div class="col-md-12">
-            <p>Wtorek<br>30°C</p>
+          <div class="col-md-3">
+            <h5 class="">Pressure</h5>
+            <h6 class="">{{weatherPressure}}</h6>
           </div>
-        </div><img class="img-fluid d-block rounded-circle float-left" src="https://static-00.iconduck.com/assets.00/sun-symbol-emoji-512x512-qjm8vnpc.png" width="100" height="100">
-      </div>
-      <div class="col-md-2" style="">
-        <div class="row">
-          <div class="col-md-12">
-            <p>Wtorek<br>30°C</p>
+          <div class="col-md-3">
+            <h5 class="">Visibility</h5>
+            <h6 class="">{{weatherVisibility}}</h6>
           </div>
-        </div><img class="img-fluid d-block rounded-circle float-left" src="https://static-00.iconduck.com/assets.00/sun-symbol-emoji-512x512-qjm8vnpc.png" width="100" height="100">
+          <div class="col-md-3">
+            <h5 class="">Humidity</h5>
+            <h6 class="">{{weatherHumidity}}</h6>
+          </div>
+          <div class="col-md-3">
+            <h5 class="">Wind Speed</h5>
+            <h6 class="">{{weatherWindSpeed}}</h6>
+          </div>
+          <div class="col-md-3">
+            <h5 class="">Wind Deg</h5>
+            <h6 class="">{{weatherWindDeg}}</h6>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-
-<p>weather works!</p>
-<p>adres: {{ ipAddress }}</p>
-<p>lat: {{lat}}</p>
-<p>lon: {{lon}}</p>
-<p>weather: {{weather}}</p>
-<p>weather description: {{weatherDescription}}</p>
-<img class="img-thumbnail" *ngIf="imageLoaded" [src]="weatherImage">
+<div class="py-3" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="mb-0">© 2014-2018 Pingendo. All rights reserved</p>
+      </div>
+    </div>
+  </div>
+</div>
