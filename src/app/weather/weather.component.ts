@@ -1,4 +1,13 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+  ComponentFactoryResolver,
+  ComponentRef,
+  ComponentFactory,
+  createComponent, Type
+} from '@angular/core';
 import { HttpClient  } from '@angular/common/http';
 
 import {Observable} from "rxjs";
@@ -6,6 +15,8 @@ import {ImageService} from "./image.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {WeatherArrayComponent} from "./weather-array/weather-array.component";
 import {DataService} from "../Datatransfer";
+import {DynamicDirective} from "./weather.directive";
+import {DynamicComponent} from "../protected/department/dynamic.component";
 
 @Component({
   selector: 'app-weather',
@@ -20,7 +31,7 @@ export class WeatherComponent implements OnInit {
   weatherDescription: string = 'Ładuję'
   weatherImage: any;
   imageLoaded: boolean = false;
-  weatherCity: string = 'Katowice';
+  weatherCity: string = 'Ładuję';
   currentDay: string = '';
   currentDate: string = '';
 
@@ -37,11 +48,24 @@ export class WeatherComponent implements OnInit {
 
   map: any;
 
+
+  @ViewChild(DynamicDirective, {static: true}) private dynamicHost!: DynamicDirective;
   constructor(private http: HttpClient,
               private imageService: ImageService,
               private sanitizer: DomSanitizer,
-              private dataService: DataService) {
+              private dataService: DataService,
+              private resolver: ComponentFactoryResolver) {
 
+  }
+
+  private messages: { type: Type<DynamicComponent> }=
+    { type: WeatherArrayComponent };
+
+  private loadComponent(tempsPerDay: number[]): void {
+    const viewContainerRef = this.dynamicHost.viewContainerRef;
+    viewContainerRef.clear();
+    const componentRef = viewContainerRef.createComponent<DynamicComponent>(this.messages.type);
+    componentRef.setInput('temps', tempsPerDay);
   }
 
 
@@ -96,6 +120,8 @@ export class WeatherComponent implements OnInit {
         this.dataService.push(this.tempsPerDay);
         console.log(this.tempsPerDay)
         console.log(res);
+
+        this.loadComponent(this.tempsPerDay);
       })
   }
 

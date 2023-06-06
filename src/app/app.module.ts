@@ -10,6 +10,7 @@ import { ImageService } from './weather/image.service';
 import {DomSanitizer} from "@angular/platform-browser";
 import { WeatherArrayComponent } from './weather/weather-array/weather-array.component';
 import { SafePipe } from './safe.pipe';
+import {DynamicDirective} from "./weather/weather.directive";
 
 
 const appRoutes: Routes = [
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
     AppComponent,
     WeatherComponent,
     WeatherArrayComponent,
-    SafePipe
+    SafePipe,
+    DynamicDirective
   ],
   imports: [
     BrowserModule,
