@@ -1,95 +1,121 @@
 <!DOCTYPE html>
 <html>
 
+<!--<nav class="navbar">-->
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 
-<nav class="navbar navbar-light">
+<div class="nav-area my-nav-bar" style="background-color: #fefff9">
+  <input type="checkbox" id="box" >
+  <label for="box" class="btn-area only-nav-bar-my" style="color: #0b0b0b"><i class="fa fa-bars only-nav-bar-my"></i></label>
+  <label class="logo only-nav-bar-my" style="margin-top: -4px">
+    <i class="fa d-inline fa-lg" style="margin-left: 20px">
+    <b style="color: #0e8c82">WEATHER</b>
+    </i>
+  </label>
+  <ul>
+    <li><a href="#CURRENTMY" id="uncheck1" style="color: #0b0b0b">CURRENT WEATHER</a></li>
+    <li><a href="#FUTUREMY" id="uncheck2" style="color: #0b0b0b">FUTURE WEATHER</a></li>
+    <li><a href="#MAPMY" id="uncheck3" style="color: #0b0b0b">MAP</a></li>
+    <li><a href="#DATAMY" id="uncheck4" style="color: #0b0b0b">DATA</a></li>
+  </ul>
+</div>
+<!--<nav class="navbar navbar-light">
   <div class="container"><a class="navbar-brand text-primary" href="#">
     <i class="fa d-inline fa-lg fa-circle"></i>
     <b>WEATHER</b>
   </a></div>
-</nav>
-<div class="py-5 align-items-center d-flex">
-  <div class="container">
-    <div class="row">
-      <div class="px-md-5 col-md-5" style="">
-        <h1 class="display-4">{{currentDay}} {{currentDate}}</h1>
-        <h1 class="display-3 mb-4" style="">{{weatherDescription}}</h1>
+</nav>-->
+<div class="py-5 align-items-center d-flex" style="background: rgb(182,182,182);
+background: linear-gradient(90deg, rgba(182,182,182,1) 0%, rgba(183,177,212,1) 37%, rgba(118,143,191,1) 100%);">
+  <div class="container" style="">
+    <div class="row align-items-center" id="CURRENTMY">
+      <div class="d-flex flex-column col-md-2 mx-auto border-top-my" style="">
+        <h1 class="font-size-my-small">{{currentDay}} {{currentDate}}</h1>
+        <h1 class="font-size-my mb-4" style="">{{weatherDescription}}</h1>
       </div>
-      <div class="d-flex flex-column col-md-2 mx-auto" style="">
+      <div class="d-flex flex-column col-md-2 mx-auto border-top-my" style="">
         <div class="row">
           <div class="col-md-12">
-            <h1 class="display-4">{{weatherCity}}</h1>
+            <h1 class="font-size-my">{{weatherCity}}</h1>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <h1 class="display-4">{{temp}}°C</h1>
+            <h1 class="font-size-my">{{temp}}°C</h1>
           </div>
         </div>
+        <div class="col-md-2 m-2 mr-4" style=""><img class=""
+                                                     height="100"
+                                                     src="https://static-00.iconduck.com/assets.00/sun-symbol-emoji-512x512-qjm8vnpc.png"
+                                                     style="" width="100"></div>
       </div>
-      <div class="col-md-2 m-2 mr-4" style=""><img class="img-fluid d-block rounded-circle float-left"
-                                                   src="https://static-00.iconduck.com/assets.00/sun-symbol-emoji-512x512-qjm8vnpc.png"
-                                                   width="100" height="100" style=""></div>
     </div>
-    <hr class="divider">
+    <hr class="divider"/>
+    <div id="FUTUREMY">
     <ng-template appDynamic></ng-template>
-    <!--<app-weather-array></app-weather-array>-->
+    </div>
     <div class="py-5">
       <div class="container">
         <div class="row">
-          <!--
-                    <iframe src="https://maps.google.com/maps?q=35.856737, 10.606619&z=15&output=embed" width="360" height="270" frameborder="0" style="border:0"></iframe>
-          -->
-          <div class="col-md-12">
-            <iframe width="100%" height="400"
-                    [src]="('https://maps.google.com/maps?q=' + lat + ',' + lon +'&z=10&output=embed') | safe"
-                    scrolling="no" frameborder="0"></iframe>
+          <div class="col-md-12" id="MAPMY">
+            <iframe [src]="('https://maps.google.com/maps?q=' + lat + ',' + lon +'&z=10&output=embed') | safe"
+                    frameborder="0"
+                    height="400"
+                    scrolling="no" width="100%"></iframe>
           </div>
 
         </div>
       </div>
     </div>
-    <div class="py-5">
+    <div class="py-5" id="DATAMY">
       <div class="container">
         <div class="row">
           <div class="col-md-3">
             <h5 class="">IP</h5>
             <h6 class="">{{ipAddress}}</h6>
+            <hr class="divider"/>
           </div>
           <div class="col-md-3">
             <h5 class="">Latitude</h5>
             <h6 class="">{{lat}}</h6>
+            <hr class="divider"/>
           </div>
           <div class="col-md-3">
             <h5 class="">Longitude</h5>
             <h6 class="">{{lon}}</h6>
+            <hr class="divider"/>
           </div>
           <div class="col-md-3">
             <h5 class="">Pressure</h5>
             <h6 class="">{{weatherPressure}}</h6>
+            <hr class="divider"/>
           </div>
           <div class="col-md-3">
             <h5 class="">Visibility</h5>
             <h6 class="">{{weatherVisibility}}</h6>
+            <hr class="divider"/>
           </div>
           <div class="col-md-3">
             <h5 class="">Humidity</h5>
             <h6 class="">{{weatherHumidity}}</h6>
+            <hr class="divider"/>
           </div>
           <div class="col-md-3">
             <h5 class="">Wind Speed</h5>
             <h6 class="">{{weatherWindSpeed}}</h6>
+            <hr class="divider"/>
           </div>
           <div class="col-md-3">
             <h5 class="">Wind Deg</h5>
             <h6 class="">{{weatherWindDeg}}</h6>
+            <hr class="divider"/>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="py-3" >
+<div class="py-3">
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
@@ -98,3 +124,4 @@
     </div>
   </div>
 </div>
+

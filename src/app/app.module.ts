@@ -11,6 +11,8 @@ import {DomSanitizer} from "@angular/platform-browser";
 import { WeatherArrayComponent } from './weather/weather-array/weather-array.component';
 import { SafePipe } from './safe.pipe';
 import {DynamicDirective} from "./weather/weather.directive";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 
 const appRoutes: Routes = [
@@ -32,7 +34,9 @@ const appRoutes: Routes = [
       appRoutes,
       {enableTracing: true} //do debugowania
     ),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule
   ],
   providers: [ImageService],
   bootstrap: [AppComponent]

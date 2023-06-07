@@ -6,7 +6,7 @@ import {
   ComponentFactoryResolver,
   ComponentRef,
   ComponentFactory,
-  createComponent, Type
+  createComponent, Type, ViewEncapsulation
 } from '@angular/core';
 import { HttpClient  } from '@angular/common/http';
 
@@ -73,7 +73,7 @@ export class WeatherComponent implements OnInit {
     this.getIPAddress();
     this.getCurrentDay();
     this.getCurrentDate();
-
+    this.uncheckCheckbox();
   }
 
   private getIPAddress() {
@@ -153,5 +153,32 @@ export class WeatherComponent implements OnInit {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  uncheckCheckbox() {
+    var myhref1 = document.getElementById("uncheck1");
+    var myhref2 = document.getElementById("uncheck2");
+    var myhref3 = document.getElementById("uncheck3");
+    var myhref4 = document.getElementById("uncheck4");
+    var myfield = document.getElementById("box");
+    // @ts-ignore
+    myhref1.addEventListener("click", function() {
+      // @ts-ignore
+      myfield.checked = false;
+    });
+    // @ts-ignore
+    myhref2.addEventListener("click", function() {
+      // @ts-ignore
+      myfield.checked = false;
+    });
+    // @ts-ignore
+    myhref3.addEventListener("click", function() {
+      // @ts-ignore
+      myfield.checked = false;
+    });
+    // @ts-ignore
+    myhref4.addEventListener("click", function() {
+      // @ts-ignore
+      myfield.checked = false;
+    });
+  }
 
 }
