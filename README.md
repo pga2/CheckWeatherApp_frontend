@@ -1,6 +1,6 @@
 # CheckWeatherApp
 
-![alt text](https://cdn.discordapp.com/attachments/946024615522734110/1123724160422645772/image.png)
+![alt text](https://i.imgur.com/6XwAFpi.png)
 
 CheckWeatherApp is a student project developed as a part of the Network Systems course. It is a web application that provides weather forecasts for the user's location. The frontend of the application is built using Angular and TypeScript, while the backend is developed with Java and the Spring framework. Additionally, the application utilizes a MySQL database to store historical weather data for users.
 
@@ -31,22 +31,35 @@ To run the CheckWeatherApp locally, follow these steps:
 ```
 
 2. Set up the backend:
-- Make sure you have Java and the Spring framework installed on your system.
-- Navigate to the backend directory:
-
+- Make sure you have Java and Maven installed on your system.
+- Clone the backend project:
 ```bash
-  cd check-weather-app/backend
+  git clone https://github.com/pga2/Weather_backend
 ```
-- Install the required dependencies.
+- Navigate to the backend directory:
+```bash
+  cd weather
+```
+- Install the required dependencies and build the application.
+```bash
+  cd mvn clean install
+```
 - Configure the MySQL database connection in the application configuration file.
-- Build and run the backend application.
-
+- Navigate to the build directory.
+```bash
+  cd C:\Users\{YOUR_USERNAME}\m2\repository\com\pawelmikolaj\weather\Weather\0.0.1-SNAPSHOT\Weather-0.0.1-SNAPSHOT.jar
+  
+```
+- Run the backend application.
+```bash
+  -java -jar Weather-0.0.1-SNAPSHOT.jar
+```
 3. Set up the frontend:
 - Make sure you have Node.js and Angular CLI installed on your system.
 - Navigate to the frontend directory:
 
 ```bash
-  cd check-weather-app/frontend
+  cd check-weather-app
 ```
 - Install the required dependencies.
 
