@@ -35,6 +35,7 @@ export class WeatherComponent implements OnInit {
   currentDay: string = '';
   currentDate: string = '';
 
+
   weatherPressure: number=1;
   weatherVisibility: number=1;
   weatherHumidity: number=1;
