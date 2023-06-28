@@ -42,6 +42,7 @@ export class WeatherComponent implements OnInit {
   weatherWindDeg: number=1;
 
   tempsPerDay: number[] = [];
+  datess: string[] = [];
 
 
   temp: number = 0;
@@ -66,6 +67,7 @@ export class WeatherComponent implements OnInit {
     viewContainerRef.clear();
     const componentRef = viewContainerRef.createComponent<DynamicComponent>(this.messages.type);
     componentRef.setInput('temps', tempsPerDay);
+    componentRef.setInput('dates', this.datess);
   }
 
 
@@ -120,8 +122,29 @@ export class WeatherComponent implements OnInit {
         this.dataService.push(this.tempsPerDay);
         console.log(this.tempsPerDay)
         console.log(res);
-
-        this.loadComponent(this.tempsPerDay);
+        this.http.post<any>('http://localhost:8080/addWeather',
+          {
+            "lon":12.2,
+            "lat": 12.3,
+            "date": "2023-06-28",
+            "sunrise": 200,
+            "sunset": 400,
+            "temp": 20.5,
+            "humidity": 44,
+            "pressure": 555,
+            "main": "clouds",
+            "description": "a lot of clouds"
+          }).subscribe();
+        this.http.get('http://localhost:8080/getHistoricalWeather?lon=' + '12.5' +'&lat='+'12.3').subscribe((res: any) => {
+          console.log("chuj");
+          console.log(res);
+          for(let i = 6; i < 11; i++) {
+            this.tempsPerDay.push(res[i-6].temp);
+            console.log(new Date(res[i-6].date).toString());
+            this.datess.push(new Date(res[i-6].date).toString().substring(0, 11));
+          }
+          this.loadComponent(this.tempsPerDay);
+        })
       })
   }
 
