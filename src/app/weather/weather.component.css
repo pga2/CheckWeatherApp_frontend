@@ -7,7 +7,7 @@
   margin: 20px;
   border: 0px solid #1e1e1e !important;
   width: 500px;
-  height: 400px;
+  height: 420px;
   background-color: #fefff9;
 }
 
@@ -58,17 +58,20 @@
     margin: 20px;
     border: 0px solid #1e1e1e !important;
     width: 350px;
-    height: 280px;
+    height: 290px;
     background-color: #fefff9;
   }
 
   .font-size-my {
+    margin-top: 10px;
+    margin-right: 10px;
     font-size: calc(1.525rem + 3.3vw);
     font-weight: 300;
     line-height: 1.2;
 
   }
   .font-size-my-small {
+    margin-top: 10px;
     font-size: calc(1.475rem + 2.7vw);
     font-weight: 300;
     line-height: 1.2;
@@ -88,6 +91,7 @@
   }
 
   .font-size-my {
+    margin-top: 5px;
     font-size: calc(1.475rem + 2.7vw);
     font-weight: 300;
     line-height: 1.2;
