@@ -10,7 +10,7 @@ import {DynamicComponent} from "../../protected/department/dynamic.component";
 })
 export class WeatherArrayComponent implements DynamicComponent{
   @Input() temps: number[] = [];
-
+  @Input() dates: string[] = [];
   days: string[] =[];
   constructor() { }
 
