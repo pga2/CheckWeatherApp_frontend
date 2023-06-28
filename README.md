@@ -27,14 +27,14 @@ To run the CheckWeatherApp locally, follow these steps:
 1. Clone the project
 
 ```bash
-  git clone https://github.com/pga2/check-weather-app
+  git clone https://github.com/pga2/CheckWeatherApp_frontend
 ```
 
 2. Set up the backend:
 - Make sure you have Java and Maven installed on your system.
 - Clone the backend project:
 ```bash
-  git clone https://github.com/pga2/Weather_backend
+  git clone https://github.com/pga2/CheckWeatherApp_backend
 ```
 - Navigate to the backend directory:
 ```bash
@@ -45,6 +45,9 @@ To run the CheckWeatherApp locally, follow these steps:
   cd mvn clean install
 ```
 - Configure the MySQL database connection in the application configuration file.
+```bash
+  cd Weather\src\sql
+```
 - Navigate to the build directory.
 ```bash
   cd C:\Users\{YOUR_USERNAME}\m2\repository\com\pawelmikolaj\weather\Weather\0.0.1-SNAPSHOT\Weather-0.0.1-SNAPSHOT.jar
