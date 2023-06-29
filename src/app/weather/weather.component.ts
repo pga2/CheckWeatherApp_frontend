@@ -125,19 +125,18 @@ export class WeatherComponent implements OnInit {
         console.log(res);
         this.http.post<any>('http://localhost:8080/addWeather',
           {
-            "lon":12.2,
-            "lat": 12.3,
-            "date": "2023-06-28",
-            "sunrise": 200,
-            "sunset": 400,
-            "temp": 20.5,
-            "humidity": 44,
-            "pressure": 555,
-            "main": "clouds",
-            "description": "a lot of clouds"
+            "lon": this.lon,
+            "lat": this.lat,
+            "date": this.getCurrentDate(),
+            "sunrise": res.current.sunrise,
+            "sunset": res.current.sunset,
+            "temp": res.current.temp,
+            "humidity": res.current.humidity,
+            "pressure": res.current.pressure,
+            "main": res.current.weather[0].main,
+            "description": res.current.weather[0].description
           }).subscribe();
-        this.http.get('http://localhost:8080/getHistoricalWeather?lon=' + '12.5' +'&lat='+'12.3').subscribe((res: any) => {
-          console.log("chuj");
+        this.http.get('http://localhost:8080/getHistoricalWeather?lon=' + this.lon +'&lat='+this.lat).subscribe((res: any) => {
           console.log(res);
           for(let i = 6; i < 11; i++) {
             this.tempsPerDay.push(res[i-6].temp);
