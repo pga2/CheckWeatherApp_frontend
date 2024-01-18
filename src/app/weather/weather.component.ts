@@ -46,7 +46,7 @@ export class WeatherComponent implements OnInit {
   datess: string[] = [];
 
 
-  temp: number = 0;
+  temp: any = 0;
 
   map: any;
 
@@ -123,11 +123,12 @@ export class WeatherComponent implements OnInit {
         this.dataService.push(this.tempsPerDay);
         console.log(this.tempsPerDay)
         console.log(res);
+        this.getCurrentDate()
         this.http.post<any>('http://localhost:8080/addWeather',
           {
             "lon": this.lon,
             "lat": this.lat,
-            "date": this.getCurrentDate(),
+            "date": this.currentDate,
             "sunrise": res.current.sunrise,
             "sunset": res.current.sunset,
             "temp": res.current.temp,
@@ -137,10 +138,12 @@ export class WeatherComponent implements OnInit {
             "description": res.current.weather[0].description
           }).subscribe();
         this.http.get('http://localhost:8080/getHistoricalWeather?lon=' + this.lon +'&lat='+this.lat).subscribe((res: any) => {
-          console.log(res);
+          console.log('res');
+          console.log(res)
           for(let i = 6; i < 11; i++) {
+            console.log('to1')
+            console.log('to2')
             this.tempsPerDay.push(res[i-6].temp);
-            console.log(new Date(res[i-6].date).toString());
             this.datess.push(new Date(res[i-6].date).toString().substring(0, 11));
           }
           this.loadComponent(this.tempsPerDay);
@@ -169,7 +172,7 @@ export class WeatherComponent implements OnInit {
     const day = String(currentDate.getDate()).padStart(2, '0');
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
     const year = currentDate.getFullYear();
-    this.currentDate = `${day}.${month}.${year}`;
+    this.currentDate = `${year}-${month}-${day}`;
   }
 
   private capitalizeFirstLetter(string : string) {
